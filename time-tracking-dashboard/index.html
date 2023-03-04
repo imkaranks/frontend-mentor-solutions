@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <title>Frontend Mentor | Time tracking dashboard</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="grid">
+  <main class="wrapper grid grid-dashboard">
+    <div class="dashboard-profile rounded-md">
+      <div class="dashboard-profile-overview rounded-md">
+        <div>
+          <img src="./images/image-jeremy.png" alt="Jeremy-smiling" class="dashboard-profile-image">
+        </div>
+        <h1 class="dashboard-profile-name">Report for <span>Jeremy Robson</span></h1>
+      </div>
+      <div class="tablist">
+        <button class="btn" value="daily" data-selected="true">Daily</button>
+        <button class="btn" value="weekly" data-selected="false">Weekly</button>
+        <button class="btn" value="monthly" data-selected="false">Monthly</button>
+      </div>
+    </div>
+    <div class="grid dashboard-schedule"></div>
+  </main>
+
+  <script src="./app.js" type="module"></script>
+</body>
+</html>
