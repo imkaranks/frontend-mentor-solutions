@@ -1,35 +1,89 @@
-import data from "./data.json" assert {type: 'json'};
-
 class App {
   constructor() {
-    this.$wrapper = document.querySelector('.dashboard-schedule');
+    this.tabPanels = document.querySelectorAll('[role="tabpanel"]');
+    this.tabs = document.querySelectorAll('[role="tab"]');
+    this.state = { current: 0 };
 
-    this.render();
+    this.tabLeft = this.tabLeft.bind(this);
+    this.tabRight = this.tabRight.bind(this);
+    this.showContent = this.showContent.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.hideAll = this.hideAll.bind(this);
+    this.addEventListeners();
   }
 
-  render() {
-    this.displayCard(this.$wrapper, data, "daily");
-
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('click', event => {
-        this.displayCard(this.$wrapper, data, event.target.value);
-      });
+  addEventListeners() {
+    document.addEventListener('keydown', event => {
+      if (window.innerWidth < 768) {
+        switch (event.key.toLowerCase()) {
+          case 'arrowleft':
+            this.tabLeft();
+            break;
+          case 'arrowright':
+            this.tabRight();
+            break;
+        }
+      }
+      else {
+        switch (event.key.toLowerCase()) {
+          case 'arrowup':
+            this.tabLeft();
+            break;
+          case 'arrowdown':
+            this.tabRight();
+            break;
+        }
+      }
     });
+
+    this.tabs.forEach(tab => {
+      tab.addEventListener('click', this.handleClick);
+    })
   }
 
-  displayCard(container, data, time) {
-    container.innerHTML = '';
-    data.forEach(item => {
-      container.innerHTML += `
-        <div class="card rounded-md bg-${item.title.toLowerCase()}">
-            <img src="./images/icon-${item.title.toLowerCase().replace(' ', '-')}.svg" alt="">
-            <div class="card-content rounded-md">
-                <h2 class="card-title">${item.title}</h2>
-                <p class="card-subtitle-big">${item.timeframes[time].current}</p>
-                <p class="">Last week - <span>${item.timeframes[time].previous}</span></p>
-            </div>
-        </div>`;
-    })
+  tabLeft() {
+    if (this.state.current > 0) {
+      this.state = { current: this.state.current - 1 };
+    }
+    else if (this.state.current === 0) {
+      this.state = { current: this.tabPanels.length - 1 };
+    }
+    this.showContent();
+  }
+
+  tabRight() {
+    if (this.state.current < this.tabPanels.length - 1) {
+      this.state = { current: this.state.current + 1 };
+    }
+    else if (this.state.current === this.tabPanels.length - 1) {
+      this.state = { current: 0 };
+    }
+    this.showContent();
+  }
+
+  showContent() {
+    this.hideAll();
+    this.tabs[this.state.current].setAttribute('tabindex', '0');
+    this.tabs[this.state.current].focus();
+    this.tabPanels[this.state.current].removeAttribute('hidden');
+  }
+
+  handleClick(event) {
+    this.hideAll();
+    const target = event.target.getAttribute('aria-controls');
+    const index = parseInt(event.target.getAttribute('data-index'));
+    this.state = { current: index };
+    event.target.setAttribute('tabindex', '0');
+    document.querySelector(`#${target}`).removeAttribute('hidden');
+  }
+
+  hideAll() {
+    this.tabs.forEach(tab => {
+      tab.setAttribute('tabindex', '-1');
+    });
+    this.tabPanels.forEach(tabPanel => {
+      tabPanel.setAttribute('hidden', '');
+    });
   }
 }
 
