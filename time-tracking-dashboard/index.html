@@ -8,6 +8,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" 
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
   
   <title>Frontend Mentor | Time tracking dashboard</title>
@@ -23,15 +26,190 @@
         </div>
         <h1 class="dashboard-profile-name">Report for <span>Jeremy Robson</span></h1>
       </div>
-      <div class="tablist">
-        <button class="btn" value="daily" data-selected="true">Daily</button>
-        <button class="btn" value="weekly" data-selected="false">Weekly</button>
-        <button class="btn" value="monthly" data-selected="false">Monthly</button>
+      <div class="tablist" role="tablist">
+        <button 
+          role="tab" 
+          tabindex="0" 
+          aria-controls="daily-tab" 
+          class="btn" 
+          value="daily" 
+          data-index="0">Daily</button>
+        <button 
+          role="tab" 
+          tabindex="-1" 
+          aria-controls="weekly-tab" 
+          class="btn" 
+          value="weekly" 
+          data-index="1">Weekly</button>
+        <button 
+          role="tab" 
+          tabindex="-1" 
+          aria-controls="monthly-tab" 
+          class="btn" 
+          value="monthly" 
+          data-index="2">Monthly</button>
+      </div>
+      <div class="arrow-keys-animation">
+        <p>Use arrow keys for navigation</p>
+        <span class="arrow-left" aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
+        <span class="arrow-right" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+        <span class="arrow-up" aria-hidden="true"><i class="fa-solid fa-arrow-up"></i></span>
+        <span class="arrow-down" aria-hidden="true"><i class="fa-solid fa-arrow-down"></i></span>
       </div>
     </div>
-    <div class="grid dashboard-schedule"></div>
+
+    <div class="grid dashboard-schedule" role="tabpanel" id="daily-tab">
+      <div class="card rounded-md bg-work">
+        <img src="./images/icon-work.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Work</h2>
+          <p class="card-subtitle-big">5</p>
+          <p class="">Last week - <span>7</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-play">
+        <img src="./images/icon-play.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Play</h2>
+          <p class="card-subtitle-big">1</p>
+          <p class="">Last week - <span>2</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-study">
+        <img src="./images/icon-study.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Study</h2>
+          <p class="card-subtitle-big">0</p>
+          <p class="">Last week - <span>1</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-exercise">
+        <img src="./images/icon-exercise.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Exercise</h2>
+          <p class="card-subtitle-big">1</p>
+          <p class="">Last week - <span>1</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-social">
+        <img src="./images/icon-social.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Social</h2>
+          <p class="card-subtitle-big">1</p>
+          <p class="">Last week - <span>3</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-self care">
+        <img src="./images/icon-self-care.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Self Care</h2>
+          <p class="card-subtitle-big">0</p>
+          <p class="">Last week - <span>1</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="grid dashboard-schedule" role="tabpanel" id="weekly-tab" hidden>
+      <div class="card rounded-md bg-work">
+        <img src="./images/icon-work.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Work</h2>
+          <p class="card-subtitle-big">32</p>
+          <p class="">Last week - <span>36</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-play">
+        <img src="./images/icon-play.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Play</h2>
+          <p class="card-subtitle-big">10</p>
+          <p class="">Last week - <span>8</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-study">
+        <img src="./images/icon-study.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Study</h2>
+          <p class="card-subtitle-big">4</p>
+          <p class="">Last week - <span>7</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-exercise">
+        <img src="./images/icon-exercise.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Exercise</h2>
+          <p class="card-subtitle-big">4</p>
+          <p class="">Last week - <span>5</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-social">
+        <img src="./images/icon-social.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Social</h2>
+          <p class="card-subtitle-big">5</p>
+          <p class="">Last week - <span>10</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-self care">
+        <img src="./images/icon-self-care.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Self Care</h2>
+          <p class="card-subtitle-big">2</p>
+          <p class="">Last week - <span>2</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="grid dashboard-schedule" role="tabpanel" id="monthly-tab" hidden>
+      <div class="card rounded-md bg-work">
+        <img src="./images/icon-work.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Work</h2>
+          <p class="card-subtitle-big">103</p>
+          <p class="">Last week - <span>128</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-play">
+        <img src="./images/icon-play.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Play</h2>
+          <p class="card-subtitle-big">23</p>
+          <p class="">Last week - <span>29</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-study">
+        <img src="./images/icon-study.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Study</h2>
+          <p class="card-subtitle-big">13</p>
+          <p class="">Last week - <span>19</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-exercise">
+        <img src="./images/icon-exercise.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Exercise</h2>
+          <p class="card-subtitle-big">11</p>
+          <p class="">Last week - <span>18</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-social">
+        <img src="./images/icon-social.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Social</h2>
+          <p class="card-subtitle-big">21</p>
+          <p class="">Last week - <span>23</span></p>
+        </div>
+      </div>
+      <div class="card rounded-md bg-self care">
+        <img src="./images/icon-self-care.svg" alt="card-icon">
+        <div class="card-content rounded-md">
+          <h2 class="card-title">Self Care</h2>
+          <p class="card-subtitle-big">7</p>
+          <p class="">Last week - <span>11</span></p>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <script src="./app.js" type="module"></script>
+  <script src="./index.js"></script>
 </body>
 </html>
