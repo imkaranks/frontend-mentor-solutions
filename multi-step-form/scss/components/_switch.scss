@@ -1,0 +1,46 @@
+@use "../abstracts" as var;
+
+.switch-wrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  padding: .5rem;
+  
+  &.monthly .isMonthly {
+    color: map-get(var.$primary-colors, "900");
+  }
+  
+  &.yearly .isYearly {
+    color: map-get(var.$primary-colors, "900");
+  }
+}
+
+.switch {
+  display: inline-block;
+  position: relative;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  width: 3rem;
+  height: 1.5rem;
+  border-radius: 100vmax;
+  background-color: map-get(var.$primary-colors, "900");
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: map-get(var.$neutral-colors, "100");
+  }
+  
+  &:checked::before {
+    left: unset;
+    right: 2px;
+  }
+}

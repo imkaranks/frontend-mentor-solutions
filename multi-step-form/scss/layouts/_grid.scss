@@ -1,0 +1,12 @@
+@use "../abstracts" as *;
+
+.grid-fieldset {
+  grid-template-rows: max-content auto max-content;
+}
+
+.grid-layout {
+  @include query-min {
+    grid-template-columns: 1fr 2fr;
+    min-height: 80vh;
+  }
+}
