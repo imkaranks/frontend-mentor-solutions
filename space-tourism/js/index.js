@@ -2,6 +2,7 @@ const $menuBtn = document.querySelector('.btn--menu');
 const $primaryNav = document.querySelector('.nav--primary');
 
 const $tabBtns = document.querySelectorAll('.btn--tab');
+const $dotBtns = document.querySelectorAll('.btn--dot');
 
 function expandMenu() {
   const isNavExpanded = $primaryNav.getAttribute('data-expanded');
@@ -49,6 +50,13 @@ window.addEventListener("load", async () => {
         });
       });
     }
+    else if (document.body.classList.contains("bg-layout--crew")) {
+      $dotBtns.forEach(btn => {
+        btn.addEventListener("click", event => {
+          loadCrewCard(event.target.dataset.controls, crew);
+        });
+      });
+    }
   } catch (error) {
     console.error(error);
   }
@@ -72,5 +80,21 @@ function loadDestinationCard (planet, data) {
             <p class="text-500 text-white">${destination.travel}</p>
         </div>
     </div>
+    `;
+}
+
+handleActiveState($dotBtns);
+
+function loadCrewCard (crew, data) {
+  const [ person ] = data.filter(item => item.name === crew);
+
+  document.querySelector('.crew__image').src = person.images.webp;
+  document.querySelector('.crew__image').alt = person.name;
+  document.querySelector('.crew__info').innerHTML = `
+    <div class="crew__title text-600 font-accent text-light uppercase flow" data-spacing="sm">
+      <h3>${person.role}</h3>
+      <p class="text-700 text-white">${person.name}</p>
+    </div>
+    <p>${person.bio}</p>
     `;
 }
