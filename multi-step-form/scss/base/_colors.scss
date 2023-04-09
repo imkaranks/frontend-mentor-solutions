@@ -1,0 +1,21 @@
+@use "../abstracts" as *;
+
+:root {
+  @each $color, $values in $colors {
+    @each $variant, $value in $values {
+      --clr-#{$color}-#{$variant} : #{$value};
+    }
+  }
+}
+
+@each $color, $values in $colors {
+  @each $variant, $value in $values {
+    .bg-#{$color}-#{$variant} {
+      background-color: $value;
+    }
+
+    .text-#{$color}-#{$variant} {
+      color: $value;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+// Typography
+$font-sizes: (
+  "xs": 0.75rem,
+  "sm": 0.875rem,
+  "base": 1rem,
+  "lg": 1.125rem,
+  "xl": 1.25rem,
+  "2xl": 1.5rem,
+  "3xl": 1.875rem,
+  "4xl": 2.25rem,
+  "5xl": 3rem,
+  "6xl": 3.75rem,
+  "7xl": 4.5rem
+);
+
+// Colors
+$colors: (
+  "primary": (
+    "900": hsl(213, 96%, 18%),
+    "400": hsl(243, 100%, 62%),
+    "300": hsl(228, 100%, 84%),
+    "200": hsl(206, 94%, 87%),
+  ),
+  "neutral": (
+    "400": hsl(231, 11%, 63%),
+    "300": hsl(229, 24%, 87%),
+    "200": hsl(217, 100%, 97%),
+    "100": hsl(231, 100%, 99%),
+    "50": hsl(0, 0%, 100%),
+  ),
+  "accent": (
+    "400": hsl(354, 84%, 57%)
+  )
+);
+
+$primary-colors: map-get($colors, "primary");
+$neutral-colors: map-get($colors, "neutral");
+$accent-colors: map-get($colors, "accent");
+
+// Breakpoints
+$breakpoints: (
+  "xs": 0px,
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+);
+
+// Display and Alignments
+$display-props: ("flex", "grid");
+$alignments: ("center", "space-between", "space-around", "space-evenly", "flex-start", "flex-end");
+$text-alignments: ("left", "right", "center");

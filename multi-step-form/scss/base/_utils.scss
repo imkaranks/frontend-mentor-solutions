@@ -1,0 +1,32 @@
+@use "../abstracts" as *;
+
+@each $align in $alignments {
+  .justify-#{$align} {
+    justify-content: #{$align};
+  }
+
+  .items-#{$align} {
+    align-items: #{$align};
+  }
+
+  .justify-items-#{$align} {
+    justify-items: #{$align};
+  }
+
+  .content-#{$align} {
+    align-content: #{$align};
+  }
+}
+
+@each $disp in $display-props {
+  .#{$disp} {
+    display: #{$disp};
+    gap: var(--gap, 1rem);
+  }
+}
+
+@each $text-align in $text-alignments {
+  .text-#{$text-align} {
+    text-align: #{$text-align};
+  }
+}

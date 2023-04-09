@@ -1,0 +1,11 @@
+@mixin query-min($bp: 576px) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin query-max($bp: 575px) {
+  @media (max-width: $bp) {
+    @content;
+  }
+}
