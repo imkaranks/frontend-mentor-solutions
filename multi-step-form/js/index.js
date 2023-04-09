@@ -61,3 +61,19 @@ function handleActiveSteps (currentStep) {
     }
   });
 }
+
+function handleInput (event) {
+  const target = event.target;
+  const value = 
+    target.type === 'checkbox'
+    ? target.checked
+    : target.value;
+  state = { ...state, [target.name]: value };
+}
+
+$inputs.forEach($input => {
+  $input.addEventListener("input", event => {
+    handleInput(event);
+    console.log(state);
+  });
+});
