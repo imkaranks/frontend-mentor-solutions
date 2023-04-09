@@ -51,3 +51,13 @@ $btns.forEach($btn => {
     }
   })
 });
+
+function handleActiveSteps (currentStep) {
+  $stepCounts.forEach($stepCount => {
+    if ($stepCount.dataset.step == currentStep) {
+      $stepCount.classList.add("active");
+    } else {
+      $stepCount.classList.remove("active");
+    }
+  });
+}
