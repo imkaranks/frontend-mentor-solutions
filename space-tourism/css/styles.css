@@ -201,6 +201,25 @@ body>* {
 */
 
 /**
+* Destination starts here
+*/
+
+.destination__stats {
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 1rem;
+  margin-top: 3rem;
+  border-top: 1px solid #383B4B;
+}
+
+.destination__image {
+  animation: rotation 30s linear infinite;
+}
+
+/**
+* Destination ends here
+*/
+
+/**
 * media queries starts here
 */
 
@@ -217,6 +236,10 @@ body>* {
 
   .grid-two-cols {
     text-align: center;
+  }
+
+  .tab-list {
+    justify-content: center;
   }
 }
 
