@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,12 +11,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
-  
+
   <title>Frontend Mentor | Time tracking dashboard</title>
 
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  
+
+<body class="grid">
+  <main class="dashboard container grid grid--dashboard">
+    <div class="dashboard__profile rounded-md">
+      <div class="dashboard__profile-overview rounded-md">
+        <div>
+          <img src="./images/image-jeremy.png" alt="Jeremy-smiling" class="dashboard__profile-image">
+        </div>
+        <h1 class="dashboard__profile-name">Report for <span>Jeremy Robson</span></h1>
+      </div>
+      <div class="tablist">
+        <button class="btn" data-controls="daily" data-active="true">Daily</button>
+        <button class="btn" data-controls="weekly" data-active="false">Weekly</button>
+        <button class="btn" data-controls="monthly" data-active="false">Monthly</button>
+      </div>
+    </div>
+    <div class="grid dashboard__schedule">
+    </div>
+  </main>
+
+  <script src="js/index.js"></script>
 </body>
+
 </html>
