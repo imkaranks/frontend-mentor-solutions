@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600;700&family=Bellefair&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/boilerplate.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/utils.css">
+
+  <title>Frontend Mentor | Space tourism website</title>
+</head>
+<body class="bg-layout bg-layout--crew">
+  <header class="header header--primary flex items-center">
+    <div class="logo">
+      <img src="./assets/shared/logo.svg" alt="space tourism logo">
+    </div>
+
+    <button class="btn btn--menu" aria-controls="primary-navigation">
+      <span class="sr-only">Menu Button</span>
+    </button>
+
+    <nav class="nav nav--primary" data-expanded="false" id="primary-navigation">
+      <span class="sr-only">Main Menu</span>
+      <ul class="nav__list nav__list--primary letter-space-400 font-primary-cond flex uppercase" role="list">
+        <li>
+          <a href="./index.html" data-selected="false" class="nav__link text-light global-link">
+            <span class="numbered-link text-white" aria-hidden="true">00</span> Home
+          </a>
+        </li>
+        <li>
+          <a href="./destination.html" data-selected="false" class="nav__link text-light global-link">
+            <span class="numbered-link text-white" aria-hidden="true">01</span> Destination
+          </a>
+        </li>
+        <li>
+          <a href="./crew.html" data-selected="true" class="nav__link text-light global-link">
+            <span class="numbered-link text-white" aria-hidden="true">02</span> Crew
+          </a>
+        </li>
+        <li>
+          <a href="./technology.html" data-selected="false" class="nav__link text-light global-link">
+            <span class="numbered-link text-white" aria-hidden="true">03</span> Technology
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main crew">
+    <div class="container grid grid-two-cols grid--crew" style="--gap:0;">
+      <h1 class="numbered-title span-entire uppercase text-500 font-primary-cond letter-space-600 text-white">
+        <span class="numbered-text bold" aria-hidden="true">02</span> Meet our crew
+      </h1>
+      <div class="grid grid--article" style="--gap: 3rem;">
+        <article class="crew__info flow" data-spacing="md">
+          <div class="crew__title text-600 font-accent text-light uppercase flow" data-spacing="sm">
+            <h3>commander</h3>
+            <p class="text-700 text-white">Douglas Hurley</p>
+          </div>
+          <p>
+            Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He
+            launched into space for the third time as commander of Crew Dragon Demo-2.
+          </p>
+        </article>
+        <div class="tab-list tab-list--crew flex" aria-label="crew list">
+          <button class="btn btn--dot text-light font-primary-cond letter-space-500" data-selected="true" data-controls="Douglas Hurley">
+            <span class="sr-only">about Douglas Hurley</span>
+          </button>
+          <button class="btn btn--dot text-light font-primary-cond letter-space-500" data-selected="false" data-controls="Mark Shuttleworth">
+            <span class="sr-only">about Mark Shuttleworth</span>
+          </button>
+          <button class="btn btn--dot text-light font-primary-cond letter-space-500" data-selected="false" data-controls="Victor Glover">
+            <span class="sr-only">about Victor Glover</span>
+          </button>
+          <button class="btn btn--dot text-light font-primary-cond letter-space-500" data-selected="false" data-controls="Anousheh Ansari">
+            <span class="sr-only">about Anousheh Ansari</span>
+          </button>
+        </div>
+      </div>
+      <div>
+        <img src="./assets/crew/image-douglas-hurley.webp" class="crew__image" alt="Douglas-Hurley">
+      </div>
+    </div>
+  </main>
+
+  <script src="./js/index.js"></script>
+</body>
+</html>

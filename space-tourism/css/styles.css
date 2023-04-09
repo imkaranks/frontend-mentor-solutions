@@ -220,12 +220,32 @@ body>* {
 */
 
 /**
+* Crew starts here
+*/
+
+.grid--crew:last-child img {
+  margin-inline: auto;
+}
+
+.grid--article {
+  padding: 2rem 0;
+}
+
+/**
+* Crew ends here
+*/
+
+/**
 * media queries starts here
 */
 
 @media (width > 36em) {
   .home .grid :last-child {
     justify-self: flex-end;
+  }
+
+  .crew__image {
+    max-height: 450px;
   }
 }
 
@@ -240,6 +260,23 @@ body>* {
 
   .tab-list {
     justify-content: center;
+  }
+
+  .grid--crew :last-child {
+    grid-row: 2 / 3;
+  }
+
+  .crew__image {
+    max-width: 300px;
+    width: 80%;
+  }
+
+  .grid--crew :nth-child(2) {
+    grid-row: 3 / 4;
+  }
+
+  .grid--article>.tab-list--crew {
+    grid-row: 1/2;
   }
 }
 
