@@ -174,29 +174,9 @@ body {
   gap: var(--gap, 1rem);
 }
 
-.bg-primary-100 {
-  background-color: var(--clr-primary-100);
-}
-
-.bg-primary-400 {
-  background-color: var(--clr-primary-400);
-}
-
 .bg-play,
 .bg-primary-300 {
   background-color: var(--clr-primary-300);
-}
-
-.bg-primary-500 {
-  background-color: var(--clr-primary-500);
-}
-
-.bg-primary-800 {
-  background-color: var(--clr-primary-800);
-}
-
-.bg-primary-900 {
-  background-color: var(--clr-primary-900);
 }
 
 .bg-study,
