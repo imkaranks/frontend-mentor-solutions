@@ -81,11 +81,11 @@ body>* {
   background-color: var(--clr-underline);
 }
 
-.nav__link:hover.nav__link:not([data-selected="true"])::after {
+.nav__link:hover.nav__link:not([data-active="true"])::after {
   --clr-underline: rgb(var(--clr-neutral-100)/.5);
 }
 
-.nav__link[data-selected="true"]::after {
+.nav__link[data-active="true"]::after {
   --clr-underline: rgb(var(--clr-neutral-100));
 }
 

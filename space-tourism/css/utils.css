@@ -275,11 +275,11 @@
   background: var(--clr-underline);
 }
 
-.btn--tab[data-selected="true"]::after {
+.btn--tab[data-active="true"]::after {
   --clr-underline: rgb(var(--clr-neutral-100));
 }
 
-.btn--tab:not([data-selected="true"]):hover {
+.btn--tab:not([data-active="true"]):hover {
   --clr-underline: rgb(var(--clr-neutral-100) / .5);
 }
 
@@ -294,7 +294,7 @@
   --bg-dot: rgb(var(--clr-neutral-100) / .5);
 }
 
-.btn--dot[data-selected="true"] {
+.btn--dot[data-active="true"] {
   --bg-dot: rgb(var(--clr-neutral-100));
 }
 
@@ -315,7 +315,7 @@
   --clr-rounded: rgb(var(--clr-neutral-900));
 }
 
-.btn--rounded[data-selected="true"] {
+.btn--rounded[data-active="true"] {
   --bg-rounded: rgb(var(--clr-neutral-100));
   --clr-rounded: rgb(var(--clr-neutral-900));
 }

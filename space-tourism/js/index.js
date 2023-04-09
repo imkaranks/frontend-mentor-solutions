@@ -3,6 +3,7 @@ const $primaryNav = document.querySelector('.nav--primary');
 
 const $tabBtns = document.querySelectorAll('.btn--tab');
 const $dotBtns = document.querySelectorAll('.btn--dot');
+const $roundedBtns = document.querySelectorAll('.btn--rounded');
 
 function expandMenu() {
   const isNavExpanded = $primaryNav.getAttribute('data-expanded');
@@ -22,18 +23,16 @@ function handleActiveState(elements) {
   elements.forEach(item => {
     item.addEventListener('click', () => {
       for (let element of elements) {
-        const isActive = element.getAttribute('data-selected');
+        const isActive = element.getAttribute('data-active');
         if (isActive === 'true') {
-          element.setAttribute('data-selected', false);
+          element.setAttribute('data-active', false);
           break;
         }
       }
-      item.setAttribute('data-selected', true);
+      item.setAttribute('data-active', true);
     })
   });
 }
-
-handleActiveState($tabBtns);
 
 window.addEventListener("load", async () => {
   try {
@@ -57,10 +56,19 @@ window.addEventListener("load", async () => {
         });
       });
     }
+    else if (document.body.classList.contains("bg-layout--technology")) {
+      $roundedBtns.forEach(btn => {
+        btn.addEventListener("click", event => {
+          loadTechnologyCard(event.target.dataset.controls, technology);
+        });
+      });
+    }
   } catch (error) {
     console.error(error);
   }
 });
+
+handleActiveState($tabBtns);
 
 function loadDestinationCard (planet, data) {
   const [ destination ] = data.filter(item => item.name === planet);
@@ -97,4 +105,20 @@ function loadCrewCard (crew, data) {
     </div>
     <p>${person.bio}</p>
     `;
+}
+
+handleActiveState($roundedBtns);
+
+function loadTechnologyCard (tech, data) {
+  const [ technology ] = data.filter(item => item.name === tech);
+
+  document.querySelector('picture>source').srcset = technology.images.portrait;
+  document.querySelector('picture>img').src = technology.images.landscape;
+  document.querySelector('picture>img').alt = technology.name;
+  document.querySelector('.technology-article').innerHTML = `
+    <div class="text-600 font-accent text-light uppercase flow" data-spacing="sm">
+      <h2 class="text-400">The terminology...</h2>
+      <p class="technology-name text-700 text-white">${technology.name}</p>
+    </div>
+    <p class="technology-description">${technology.description}</p>`;
 }
