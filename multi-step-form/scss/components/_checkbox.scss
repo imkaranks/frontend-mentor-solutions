@@ -1,0 +1,56 @@
+@use '../abstracts' as var;
+
+.checkbox-wrapper {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  
+  &:hover input ~ .checkmark {
+    background-color: var(--clr-primary-300);
+  }
+
+  & input:active ~ .checkmark {
+    background-color: var(--clr-accent-400);
+  }
+
+  & input:checked ~ .checkmark {
+    background-color: var(--clr-primary-400);
+  }
+  
+  & input:checked ~ .checkmark::after {
+    display: block;
+  }
+
+  & .checkmark::after {
+    left: 8px;
+    bottom: 5px;
+    width: 6px;
+    height: 12px;
+    border: solid var(--clr-neutral-50);
+    border-width: 0 4px 4px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+
+.form-group-checkbox {
+  visibility: hidden;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: var(--clr-neutral-50);
+  border: 1px solid var(--clr-primary-900);
+  
+  &::after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+}

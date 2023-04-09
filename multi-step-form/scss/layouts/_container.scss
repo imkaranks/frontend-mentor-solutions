@@ -1,0 +1,13 @@
+@use "../abstracts" as *;
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+  padding: .5rem;
+  border-radius: 1rem;
+
+  @include query-max {
+    margin-top: 7rem;
+  }
+}

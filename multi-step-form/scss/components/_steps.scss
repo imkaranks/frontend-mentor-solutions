@@ -1,0 +1,50 @@
+@use '../abstracts' as var;
+
+.form-step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include var.query-max {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.form-step-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+
+  &.active .form-step-count {
+    border: 2px solid var(--clr-primary-200);
+    background-color: var(--clr-primary-200);
+    color: var(--clr-primary-900);
+  }
+}
+
+.form-step-count {
+  border: 2px solid var(--clr-neutral-50);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.form-step-text {
+  & span {
+    display: block;
+    text-transform: uppercase;
+  }
+  
+  & :first-child {
+    font-size: .85rem;
+  }
+
+  @include var.query-max {
+    display: none;
+  }
+}

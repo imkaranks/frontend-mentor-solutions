@@ -1,0 +1,25 @@
+@use "../abstracts" as *;
+
+.form-sidebar {
+  border-radius: 1rem;
+  background: url(../assets/images/bg-sidebar-mobile.svg);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2rem;
+
+  @include query-max {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 10rem;
+    border-radius: 0;
+  }
+
+  @include query-min {
+    background: url(../assets/images/bg-sidebar-desktop.svg);
+    background-size: cover;
+  }
+}

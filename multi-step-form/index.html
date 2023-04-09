@@ -9,15 +9,192 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/CSSRulePlugin.min.js" integrity="sha512-TJiE9joKYXjdf5nd0Kkzqt9QOYfp5Hk5W/PaeRmpOd7HYBVdSqpTxJezbfLzJnPrS7HGnalR54WO/hbppgDgkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="js/app.js" defer></script>
-  <script src="js/transition.js" defer></script>
-
   <link rel="stylesheet" href="dist/styles.css">
   <title>Frontend Mentor | Multi-step form</title>
 </head>
-<body>
-  
+<body class="bg-neutral-300">
+
+  <div class="container grid grid-layout bg-neutral-50">
+    <aside class="form-sidebar">
+      <ul class="form-step-list text-neutral-50">
+        <li class="form-step-item active" data-step="1">
+          <div class="form-step-count">1</div>
+          <div class="form-step-text"><span class="text-primary-300">Step 1</span><span>Your info</span></div>
+        </li>
+        <li class="form-step-item" data-step="2">
+          <div class="form-step-count">2</div>
+          <div class="form-step-text"><span class="text-primary-300">Step 2</span><span>Select plan</span></div>
+        </li>
+        <li class="form-step-item" data-step="3">
+          <div class="form-step-count">3</div>
+          <div class="form-step-text"><span class="text-primary-300">Step 3</span><span>Add-ons</span></div>
+        </li>
+        <li class="form-step-item" data-step="4">
+          <div class="form-step-count">4</div>
+          <div class="form-step-text"><span class="text-primary-300">Step 4</span><span>Summary</span></div>
+        </li>
+      </ul>
+    </aside>
+
+    <div class="form-main text-neutral-400">
+      <fieldset class="form-fieldset form-fieldset-step-1 flow" data-step="1">
+        <div class="form-fieldset-header flow">
+          <legend class="form-title text-primary-900 line-height-1">Personal info</legend>
+          <p class="form-hint">Please provide your name, email address and phone number.</p>
+        </div>
+
+        <div class="flow form-group-wrapper" style="--flow-space: 1rem;">
+          <div class="form-group flex">
+            <label class="text-primary-900" for="fullname">Name</label>
+            <input class="text-primary-900" type="text" name="fullname" id="fullname" required>
+            <span class="form-error-desc text-accent-400" data-error="false">Lorem, ipsum.</span>
+          </div>
+
+          <div class="form-group flex">
+            <label class="text-primary-900" for="email">Email Address</label>
+            <input class="text-primary-900" type="text" name="email" id="email" required>
+            <span class="form-error-desc text-accent-400" data-error="false">Lorem, ipsum.</span>
+          </div>
+
+          <div class="form-group flex">
+            <label class="text-primary-900" for="phone">Phone Number</label>
+            <input class="text-primary-900" type="text" name="phone" id="phone" required>
+            <span class="form-error-desc text-accent-400" data-error="false">Lorem, ipsum.</span>
+          </div>
+        </div>
+
+        <div class="form-controls form-controls-step-1 flex items-center">
+          <button class="btn btn-go-next bg-primary-400 text-neutral-100">Next Step</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset form-fieldset-step-2 flow" data-step="2" hidden>
+        <div class="form-fieldset-header flow">
+          <legend class="form-title text-primary-900 line-height-1">Select your plan</legend>
+          <p class="form-hint">You have the option of monthly or yearly billing.</p>
+        </div>
+
+        <div class="card-wrapper grid">
+          <div class="card flow">
+            <img src="./assets/images/icon-arcade.svg" alt="arcade">
+            <div>
+              <h3 class="card-title text-primary-900">Arcade</h3>
+              <p>$9/mo</p>
+            </div>
+          </div>
+          <div class="card flow">
+            <img src="./assets/images/icon-advanced.svg" alt="advanced">
+            <div>
+              <h3 class="card-title text-primary-900">Advanced</h3>
+              <p>$12/mo</p>
+            </div>
+          </div>
+          <div class="card flow">
+            <img src="./assets/images/icon-pro.svg" alt="pro">
+            <div>
+              <h3 class="card-title text-primary-900">Pro</h3>
+              <p>$15/mo</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="switch-wrapper monthly bg-neutral-200">
+          <span class="isMonthly">Monthly</span>
+          <input type="checkbox" name="isYearly" id="isYearly" class="switch">
+          <span class="isYearly">Yearly</span>
+        </div>
+
+        <div class="form-controls flex items-center">
+          <button class="btn btn-go-back bg-neutral-200 text-neutral-400">Go Back</button>
+          <button class="btn btn-go-next bg-primary-400 text-neutral-100">Next Step</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset form-fieldset-step-3 flow" data-step="3" hidden>
+        <div class="form-fieldset-header flow">
+          <legend class="form-title text-primary-900 line-height-1">Pick add-ons</legend>
+          <p class="form-hint">Add-ons help enhance your gaming experience.</p>
+        </div>
+
+        <div class="flow" style="--flow-space: 1rem;">
+          <div class="form-group flex items-center bg-neutral-200">
+            <div class="checkbox-wrapper">
+              <input class="form-group-checkbox" checked="checked" type="checkbox" name="wantOnlineService" id="wantOnlineService">
+              <span class="checkmark"></span>
+            </div>
+            <div>
+              <label class="text-primary-900" for="wantOnlineService">Online service</label>
+              <p>Access to multiplayer games</p>
+            </div>
+            <div>+$1/mo</div>
+          </div>
+
+          <div class="form-group flex items-center bg-neutral-200">
+            <div class="checkbox-wrapper">
+              <input class="form-group-checkbox" type="checkbox" name="wantLargerStorage" id="wantLargerStorage">
+              <span class="checkmark"></span>
+            </div>
+            <div>
+              <label class="text-primary-900" for="wantLargerStorage">Larger storage</label>
+              <p>Extra 1TB of cloud save</p>
+            </div>
+            <div>+$2/mo</div>
+          </div>
+
+          <div class="form-group flex items-center bg-neutral-200">
+            <div class="checkbox-wrapper">
+              <input class="form-group-checkbox" type="checkbox" name="wantCustomization" id="wantCustomization">
+              <span class="checkmark"></span>
+            </div>
+            <div>
+              <label class="text-primary-900" for="wantCustomization">Customizable Profile</label>
+              <p>Custom theme on your profile</p>
+            </div>
+            <div>+$1/mo</div>
+          </div>
+        </div>
+
+        <div class="form-controls flex items-center">
+          <button class="btn btn-go-back bg-neutral-200 text-neutral-400">Go Back</button>
+          <button class="btn btn-go-next bg-primary-400 text-neutral-100">Next Step</button>
+        </div>
+      </fieldset>
+
+      <div class="form-fieldset form-fieldset-step-4 flow" data-step="4" hidden>
+        <div class="form-fieldset-header">
+          <h2 class="form-title text-primary-900">Finishing up</h2>
+          <p class="form-hint">Double-check everything looks OK before confirming.</p>
+        </div>
+
+        <div class="form-overview-wrapper bg-neutral-200">
+          <div class="form-overview-item form-selected-plan text-primary-900">
+            <h3 class="form-title-lg">Arcade <span class="plan-type">Monthly</span></h3>
+            <p class="form-price-lg">$9/mo</p>
+          </div>
+
+          <div class="form-overview-item form-selected-service">
+            <h3 class="form-title-sm">Online service</h3>
+            <p class="form-price-sm text-neutral-400">+$1/mo</p>
+          </div>
+
+          <div class="form-overview-item form-selected-service">
+            <h3 class="form-title-sm">Larger storage</h3>
+            <p class="form-price-sm text-neutral-400">+$2/mo</p>
+          </div>
+
+          <div class="form-overview-item form-grand-total">
+            <h3 class="form-title-sm">Total<span class="plan-type">(per month)</span></h3>
+            <p class="form-price-xl text-primary-400">+$12/mo</p>
+          </div>
+        </div>
+
+        <div class="form-controls flex items-center">
+          <button class="btn btn-go-back bg-neutral-200 text-neutral-400">Go Back</button>
+          <button class="btn btn-confirm bg-primary-400 text-neutral-100">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

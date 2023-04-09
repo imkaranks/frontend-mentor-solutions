@@ -1,0 +1,26 @@
+@use "../abstracts" as var;
+
+.card-wrapper {
+  --gap: 1rem;
+
+  @include var.query-min {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid var(--clr-primary-900);
+  border-radius: .5rem;
+
+  @include var.query-max {
+    --flow-space: 0;
+    padding: 1.25rem;
+    display: flex;
+    gap: 1rem;
+  }
+
+  @include var.query-min {
+    --flow-space: 3rem;
+  }
+}

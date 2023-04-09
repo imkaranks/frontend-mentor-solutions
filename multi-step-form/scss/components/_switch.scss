@@ -1,0 +1,46 @@
+@use "../abstracts" as var;
+
+.switch-wrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  padding: .5rem;
+  
+  &.monthly .isMonthly {
+    color: var(--clr-primary-900);
+  }
+  
+  &.yearly .isYearly {
+    color: var(--clr-primary-900);
+  }
+}
+
+.switch {
+  display: inline-block;
+  position: relative;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  width: 3rem;
+  height: 1.5rem;
+  border-radius: 100vmax;
+  background-color: var(--clr-primary-900);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--clr-neutral-100);
+  }
+  
+  &:checked::before {
+    left: unset;
+    right: 2px;
+  }
+}
