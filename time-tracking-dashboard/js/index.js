@@ -1,36 +1,70 @@
-const $scheduleWrapper = document.querySelector(".dashboard__schedule");
-const $btns = document.querySelectorAll(".btn");
+const $tabPanels = document.querySelectorAll("[role='tabpanel']");
+const $tabs = document.querySelectorAll("[role='tab']");
+let current = 0;
 
-window.addEventListener("load", async () => {
-  const response = await fetch("./js/data.json");
-  const data = await response.json();
-  loadScheduleCard(data, "daily");
-
-  $btns.forEach(btn => {
-    btn.addEventListener('click', event => {
-      for (let $btn of $btns) {
-        $btn.setAttribute("data-active", false);
+window.addEventListener("load", () => {
+  $tabs.forEach($tab => {
+    $tab.addEventListener("click", (e) => {
+      for (let tab of $tabs) {
+        tab.setAttribute('data-active', false);
       }
-      btn.setAttribute("data-active", true);
-
-      const time = event.target.dataset.controls;
-
-      loadScheduleCard(data, time);
+      handleActiveState(e);
     })
-  })
-})
+  });
+  
+  document.addEventListener("keydown", event => {
+    switch (event.key.toLowerCase()) {
+      case "arrowleft":
+        tabTowardsLeft();
+        break;
+      case "arrowright":
+        tabTowardsRight();
+        break;
+    }
+  });
+});
 
-function loadScheduleCard (schedules, time) {
-  $scheduleWrapper.innerHTML = "";
-  schedules.forEach(schedule => {
-    $scheduleWrapper.innerHTML += 
-      `<div class="card rounded-md bg-${schedule.title.toLowerCase()}">
-        <img src="./images/icon-${schedule.title.toLowerCase().replace(' ', '-')}.svg" alt="">
-        <div class="card__content rounded-md">
-          <h2 class="card__title">${schedule.title}</h2>
-          <p class="card__subtitle--big">${schedule.timeframes[time].current}</p>
-          <p class="">Last week - <span>${schedule.timeframes[time].previous}</span></p>
-        </div>
-      </div>`;
+function tabTowardsLeft() {
+  if (current > 0) {
+    current = current - 1;
+  } else if (current === 0) {
+    current = $tabPanels.length - 1;
+  }
+  showCurrentTab();
+}
+
+function tabTowardsRight() {
+  if (current < $tabPanels.length - 1) {
+    current = current + 1;
+  } else if (current === $tabPanels.length - 1) {
+    current = 0;
+  }
+  showCurrentTab();
+}
+
+function showCurrentTab() {
+  hideAll();
+  $tabs[current].setAttribute('tabindex', '0');
+  $tabs[current].focus();
+  $tabPanels[current].removeAttribute('hidden');
+}
+
+function handleActiveState(event) {
+  hideAll();
+  const target = event.target;
+  const controlledTabPanel = target.getAttribute("data-controls");
+  const index = parseInt(target.getAttribute('data-index'));
+  current = index;
+  target.setAttribute('tabindex', '0');
+  target.setAttribute('data-active', true);
+  document.querySelector(`#${controlledTabPanel}`).removeAttribute('hidden');
+}
+
+function hideAll() {
+  $tabs.forEach($tab => {
+    $tab.setAttribute('tabindex', '-1');
+  });
+  $tabPanels.forEach($tabPanel => {
+    $tabPanel.setAttribute('hidden', '');
   });
 }
