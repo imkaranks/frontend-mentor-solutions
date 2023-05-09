@@ -1,124 +1,92 @@
-const $menuBtn = document.querySelector('.btn--menu');
-const $primaryNav = document.querySelector('.nav--primary');
+const menuBtn = document.querySelector('[aria-controls="primary-navigation"]');
+const primaryNav = document.querySelector('#primary-navigation');
+const tabList = document.querySelector('[role="tablist"]');
+const tabs = document.querySelectorAll('[role="tab"]');
+const tabPanels = document.querySelectorAll('[role="tabpanel"]');
 
-const $tabBtns = document.querySelectorAll('.btn--tab');
-const $dotBtns = document.querySelectorAll('.btn--dot');
-const $roundedBtns = document.querySelectorAll('.btn--rounded');
-
-function expandMenu() {
-  const isNavExpanded = $primaryNav.getAttribute('data-expanded');
-  if (isNavExpanded === 'false') {
-    $primaryNav.setAttribute('data-expanded', true);
-    $menuBtn.setAttribute('aria-expanded', true);
-  }
-  else {
-    $primaryNav.setAttribute('data-expanded', false);
-    $menuBtn.setAttribute('aria-expanded', false);
-  }
-}
-
-$menuBtn.addEventListener("click", expandMenu);
-
-function handleActiveState(elements) {
-  elements.forEach(item => {
-    item.addEventListener('click', () => {
-      for (let element of elements) {
-        const isActive = element.getAttribute('data-active');
-        if (isActive === 'true') {
-          element.setAttribute('data-active', false);
-          break;
-        }
-      }
-      item.setAttribute('data-active', true);
-    })
+window.addEventListener('load', () => {
+  menuBtn.addEventListener('click', (e) => {
+    const button = e.currentTarget;
+    const isExpanded = button.getAttribute('aria-expanded');
+    if (isExpanded === 'false') {
+      primaryNav.setAttribute('data-expanded', true);
+      button.setAttribute('aria-expanded', true);
+      button.querySelector('.sr-only').textContent = 'Close Menu';
+    }
+    else {
+      primaryNav.setAttribute('data-expanded', false);
+      button.setAttribute('aria-expanded', false);
+      button.querySelector('.sr-only').textContent = 'Open Menu';
+    }
   });
-}
-
-window.addEventListener("load", async () => {
-  try {
-    const response = await fetch("./js/data.json");
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    const { destinations, crew, technology } = await response.json();
-    
-    if (document.body.classList.contains("bg-layout--destination")) {
-      $tabBtns.forEach(btn => {
-        btn.addEventListener("click", event => {
-          loadDestinationCard(event.target.dataset.controls, destinations);
-        });
-      });
-    }
-    else if (document.body.classList.contains("bg-layout--crew")) {
-      $dotBtns.forEach(btn => {
-        btn.addEventListener("click", event => {
-          loadCrewCard(event.target.dataset.controls, crew);
-        });
-      });
-    }
-    else if (document.body.classList.contains("bg-layout--technology")) {
-      $roundedBtns.forEach(btn => {
-        btn.addEventListener("click", event => {
-          loadTechnologyCard(event.target.dataset.controls, technology);
-        });
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
 });
 
-handleActiveState($tabBtns);
+class TabList {
+  constructor(tabList) {
+    this.tabList = tabList;
+    this.tabs = tabList.querySelectorAll('[role="tab"]');
+    this.container = tabList.parentNode;
+    this.tabPanels = this.container.querySelectorAll('[role="tabpanel"]');
+    this.pictures = document.querySelectorAll('picture');
 
-function loadDestinationCard (planet, data) {
-  const [ destination ] = data.filter(item => item.name === planet);
+    this.previous = null;
+    this.current = 0;
+    this.focus = this.current;
 
-  document.querySelector('.destination__image').src = destination.images.webp;
-  document.querySelector('.destination__image').alt = destination.name;
-  document.querySelector('.destination__info').innerHTML = `
-    <h3 class="destination__title text-800 font-accent text-white uppercase">${destination.name}</h3>
-    <p>${destination.description}</p>
-    <div class="destination__stats grid uppercase">
-        <div class="destination__stat">
-            <h4 class="text-300 font-primary-cond letter-space-400">Avg. distance</h4>
-            <p class="text-500 text-white">${destination.distance}</p>
-        </div>
-        <div class="destination__stat">
-            <h4 class="text-300 font-primary-cond letter-space-400">Est. travel time</h4>
-            <p class="text-500 text-white">${destination.travel}</p>
-        </div>
-    </div>
-    `;
+    this.changeTab = this.changeTab.bind(this);
+    this.addEventListeners();
+  }
+
+  addEventListeners() {
+    this.initTabs();
+
+    this.tabList.addEventListener('keydown', (e) => this.handleKeydown(e.keyCode))
+  }
+
+  initTabs() {
+    for (let i = 0; i < this.tabs.length; i++) {
+      this.tabs[i].addEventListener('click', () => this.handleClick(i));
+    }
+  }
+
+  handleClick(index) {
+    if (index === this.current) return;
+    this.previous = this.current;
+    this.current = index;
+    this.changeTab();
+    this.tabs[this.previous].setAttribute('tabindex', -1);
+    this.tabs[this.current].setAttribute('tabindex', 0);
+  }
+
+  changeTab() {
+    this.tabs[this.previous].setAttribute('data-active', false);
+    this.tabs[this.current].setAttribute('data-active', true);
+    this.tabPanels[this.previous].setAttribute('hidden', '');
+    this.tabPanels[this.current].removeAttribute('hidden');
+    this.pictures[this.previous].setAttribute('hidden', '');
+    this.pictures[this.current].removeAttribute('hidden');
+  }
+
+  handleKeydown(keyCode) {
+    const keydownLeft = 37;
+    const keydownRight = 39;
+    switch (keyCode) {
+      case keydownLeft:
+        this.focus = this.focus > 0 ? this.focus - 1 : this.tabs.length-1;
+        break;
+      case keydownRight:
+        this.focus = this.focus < this.tabs.length-1 ? this.focus + 1 : 0;
+        break;
+      case 13:
+        this.previous = this.current;
+        this.current = this.focus;
+        this.changeTab();
+        break;
+    }
+    this.tabs[this.current].setAttribute('tabindex', -1);
+    this.tabs[this.focus].setAttribute('tabindex', 0);
+    this.tabs[this.focus].focus();
+  }
 }
 
-handleActiveState($dotBtns);
-
-function loadCrewCard (crew, data) {
-  const [ person ] = data.filter(item => item.name === crew);
-
-  document.querySelector('.crew__image').src = person.images.webp;
-  document.querySelector('.crew__image').alt = person.name;
-  document.querySelector('.crew__info').innerHTML = `
-    <div class="crew__title text-600 font-accent text-light uppercase flow" data-spacing="sm">
-      <h3>${person.role}</h3>
-      <p class="text-700 text-white">${person.name}</p>
-    </div>
-    <p>${person.bio}</p>
-    `;
-}
-
-handleActiveState($roundedBtns);
-
-function loadTechnologyCard (tech, data) {
-  const [ technology ] = data.filter(item => item.name === tech);
-
-  document.querySelector('picture>source').srcset = technology.images.portrait;
-  document.querySelector('picture>img').src = technology.images.landscape;
-  document.querySelector('picture>img').alt = technology.name;
-  document.querySelector('.technology-article').innerHTML = `
-    <div class="text-600 font-accent text-light uppercase flow" data-spacing="sm">
-      <h2 class="text-400">The terminology...</h2>
-      <p class="technology-name text-700 text-white">${technology.name}</p>
-    </div>
-    <p class="technology-description">${technology.description}</p>`;
-}
+new TabList(tabList);

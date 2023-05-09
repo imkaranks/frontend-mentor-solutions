@@ -68,6 +68,7 @@ body>* {
 
 .nav__link {
   position: relative;
+  outline: none;
 }
 
 .nav__link::after {
@@ -81,12 +82,22 @@ body>* {
   background-color: var(--clr-underline);
 }
 
-.nav__link:hover.nav__link:not([data-active="true"])::after {
-  --clr-underline: rgb(var(--clr-neutral-100)/.5);
+.nav__link:hover:not([data-active="true"])::after,
+.nav__link:focus-visible:not([data-active="true"])::after {
+  --clr-underline: rgb(var(--clr-neutral-100-rgb)/.5);
+}
+
+.nav__link[data-active="true"] {
+  color: var(--clr-neutral-100);
+}
+
+.nav__link:focus-visible {
+  outline: 2px solid var(--clr-neutral-100);
+  outline-offset: 4px;
 }
 
 .nav__link[data-active="true"]::after {
-  --clr-underline: rgb(var(--clr-neutral-100));
+  --clr-underline: var(--clr-neutral-100);
 }
 
 .btn--menu {
@@ -142,7 +153,7 @@ body>* {
     width: 90%;
     right: 0;
     height: 0.05rem;
-    background-color: rgb(var(--clr-neutral-100));
+    background-color: var(--clr-neutral-100);
     z-index: -1;
   }
 }
@@ -173,7 +184,7 @@ body>* {
   border-radius: 50%;
   aspect-ratio: 1;
   text-decoration: none;
-  background-color: rgb(var(--clr-neutral-100));
+  background-color: var(--clr-neutral-100);
 }
 
 .btn--large::after {
@@ -182,7 +193,7 @@ body>* {
   z-index: -1;
   width: 100%;
   height: 100%;
-  background-color: rgb(var(--clr-neutral-100) / .2);
+  background-color: rgb(var(--clr-neutral-100-rgb) / .2);
   border-radius: 50%;
   opacity: 0;
   transition:
@@ -211,8 +222,9 @@ body>* {
   border-top: 1px solid #383B4B;
 }
 
-.destination__image {
-  animation: rotation 30s linear infinite;
+picture > img {
+  width: 100%;
+  object-fit: contain;
 }
 
 /**
@@ -223,12 +235,8 @@ body>* {
 * Crew starts here
 */
 
-.grid--crew:last-child img {
-  margin-inline: auto;
-}
-
 .grid--article {
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 /**
@@ -242,10 +250,6 @@ body>* {
 @media (width > 36em) {
   .home .grid :last-child {
     justify-self: flex-end;
-  }
-
-  .crew__image {
-    max-height: 450px;
   }
 }
 
@@ -266,9 +270,10 @@ body>* {
     grid-row: 2 / 3;
   }
 
-  .crew__image {
+  picture > img {
     max-width: 300px;
     width: 80%;
+    margin-inline: auto;
   }
 
   .grid--crew :nth-child(2) {
@@ -319,7 +324,7 @@ body>* {
     height: 400px;
   }
 
-  picture>img {
+  picture > img {
     position: absolute;
     max-height: 400px;
     top: 0;
@@ -329,7 +334,7 @@ body>* {
 }
 
 @media (width < 62em) {
-  .grid--technology :nth-child(3) {
+  .grid--technology > picture {
     grid-row: 2 / 3;
   }
 

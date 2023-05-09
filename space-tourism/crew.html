@@ -16,16 +16,18 @@
 </head>
 <body class="bg-layout bg-layout--crew">
   <header class="header header--primary flex items-center">
+    <a href="#primary-navigation" class="sr-only">skip to navigation</a>
+    <a href="#main-content" class="sr-only">skip to main content</a>
+
     <div class="logo">
       <img src="./assets/shared/logo.svg" alt="space tourism logo">
     </div>
 
-    <button class="btn btn--menu" aria-controls="primary-navigation">
-      <span class="sr-only">Menu Button</span>
+    <button class="btn btn--menu" aria-expanded="false" aria-controls="primary-navigation">
+      <span class="sr-only">Open Menu</span>
     </button>
 
-    <nav class="nav nav--primary" data-expanded="false" id="primary-navigation">
-      <span class="sr-only">Main Menu</span>
+    <nav class="nav nav--primary" data-expanded="false" id="primary-navigation" aria-label="Main Menu">
       <ul class="nav__list nav__list--primary letter-space-400 font-primary-cond flex uppercase" role="list">
         <li>
           <a href="./index.html" data-active="false" class="nav__link text-light global-link">
@@ -51,13 +53,13 @@
     </nav>
   </header>
 
-  <main class="main crew">
+  <main class="main crew" id="main-content">
     <div class="container grid grid-two-cols grid--crew" style="--gap:0;">
       <h1 class="numbered-title span-entire uppercase text-500 font-primary-cond letter-space-600 text-white">
         <span class="numbered-text bold" aria-hidden="true">02</span> Meet our crew
       </h1>
-      <div class="grid grid--article" style="--gap: 3rem;">
-        <article class="crew__info flow" data-spacing="md">
+      <div class="grid grid--article" style="--gap: 1rem;">
+        <article class="crew__info flow" data-spacing="md" id="douglas-hurley" role='tabpanel'>
           <div class="crew__title text-600 font-accent text-light uppercase flow" data-spacing="sm">
             <h3>commander</h3>
             <p class="text-700 text-white">Douglas Hurley</p>
@@ -67,24 +69,80 @@
             launched into space for the third time as commander of Crew Dragon Demo-2.
           </p>
         </article>
-        <div class="tab-list tab-list--crew flex" aria-label="crew list">
-          <button class="btn btn--dot text-light font-primary-cond letter-space-500" data-active="true" data-controls="Douglas Hurley">
-            <span class="sr-only">about Douglas Hurley</span>
-          </button>
-          <button class="btn btn--dot text-light font-primary-cond letter-space-500" data-active="false" data-controls="Mark Shuttleworth">
-            <span class="sr-only">about Mark Shuttleworth</span>
-          </button>
-          <button class="btn btn--dot text-light font-primary-cond letter-space-500" data-active="false" data-controls="Victor Glover">
-            <span class="sr-only">about Victor Glover</span>
-          </button>
-          <button class="btn btn--dot text-light font-primary-cond letter-space-500" data-active="false" data-controls="Anousheh Ansari">
-            <span class="sr-only">about Anousheh Ansari</span>
-          </button>
-        </div>
+
+        <article class="crew__info flow" data-spacing="md" id="mark-shuttleworth" role='tabpanel' hidden>
+          <div class="crew__title text-600 font-accent text-light uppercase flow" data-spacing="sm">
+            <h3>mission specialist</h3>
+            <p class="text-700 text-white">Mark Shuttleworth</p>
+          </div>
+          <p>
+            Mark Richard Shuttleworth is the founder and CEO of Canonical, the company behind the Linux-based Ubuntu operating system. Shuttleworth became the first South African to travel to space as a space tourist.
+          </p>
+        </article>
+
+        <article class="crew__info flow" data-spacing="md" id="victor-glover" role='tabpanel' hidden>
+          <div class="crew__title text-600 font-accent text-light uppercase flow" data-spacing="sm">
+            <h3>Pilot</h3>
+            <p class="text-700 text-white">Victor Glover</p>
+          </div>
+          <p>
+            Pilot on the first operational flight of the SpaceX Crew Dragon to the International Space Station. Glover is a commander in the U.S. Navy where he pilots an F/A-18.He was a crew member of Expedition 64, and served as a station systems flight engineer.
+          </p>
+        </article>
+
+        <article class="crew__info flow" data-spacing="md" id="anousheh-ansari" role='tabpanel' hidden>
+          <div class="crew__title text-600 font-accent text-light uppercase flow" data-spacing="sm">
+            <h3>flight engineer</h3>
+            <p class="text-700 text-white">Anousheh Ansari</p>
+          </div>
+          <p>
+            Anousheh Ansari is an Iranian American engineer and co-founder of Prodea Systems. Ansari was the fourth self-funded space tourist, the first self-funded woman to fly to the ISS, and the first Iranian in space.
+          </p>
+        </article>
+
+        <ul class="tab-list tab-list--crew flex" role="tablist" aria-label="Meet Our Crew">
+          <li>
+            <button class="btn btn--dot text-light font-primary-cond letter-space-500" aria-controls="douglas-hurley" role="tab" tabindex="0">
+              <span class="sr-only">Meet Douglas Hurley</span>
+            </button>
+          </li>
+          <li>
+            <button class="btn btn--dot text-light font-primary-cond letter-space-500" aria-controls="mark-shuttleworth" role="tab" tabindex="-1">
+              <span class="sr-only">Meet Mark Shuttleworth</span>
+            </button>
+          </li>
+          <li>
+            <button class="btn btn--dot text-light font-primary-cond letter-space-500" aria-controls="victor-glover" role="tab" tabindex="-1">
+              <span class="sr-only">Meet Victor Glover</span>
+            </button>
+          </li>
+          <li>
+            <button class="btn btn--dot text-light font-primary-cond letter-space-500" aria-controls="anousheh-ansari" role="tab" tabindex="-1">
+              <span class="sr-only">Meet Anousheh Ansari</span>
+            </button>
+          </li>
+        </ul>
       </div>
-      <div>
+
+      <picture>
+        <source srcset="./assets/crew/image-douglas-hurley.webp" type="image/webp">
         <img src="./assets/crew/image-douglas-hurley.webp" class="crew__image" alt="Douglas-Hurley">
-      </div>
+      </picture>
+
+      <picture hidden>
+        <source srcset="./assets/crew/image-mark-shuttleworth.webp" type="image/webp">
+        <img src="./assets/crew/image-mark-shuttleworth.webp" class="crew__image" alt="Mark Shuttleworth">
+      </picture>
+
+      <picture hidden>
+        <source srcset="./assets/crew/image-victor-glover.webp" type="image/webp">
+        <img src="./assets/crew/image-victor-glover.webp" class="crew__image" alt="Victor Glover">
+      </picture>
+
+      <picture hidden>
+        <source srcset="./assets/crew/image-anousheh-ansari.webp" type="image/webp">
+        <img src="./assets/crew/image-anousheh-ansari.webp" class="crew__image" alt="Anousheh Ansari">
+      </picture>
     </div>
   </main>
 

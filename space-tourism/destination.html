@@ -17,16 +17,18 @@
 </head>
 <body class="bg-layout bg-layout--destination">
   <header class="header header--primary flex items-center">
+    <a href="#primary-navigation" class="sr-only">skip to navigation</a>
+    <a href="#main-content" class="sr-only">skip to main content</a>
+
     <div class="logo">
       <img src="./assets/shared/logo.svg" alt="space tourism logo">
     </div>
 
-    <button class="btn btn--menu" aria-controls="primary-navigation">
-      <span class="sr-only">Menu Button</span>
+    <button class="btn btn--menu" aria-expanded="false" aria-controls="primary-navigation">
+      <span class="sr-only">Open Menu</span>
     </button>
 
-    <nav class="nav nav--primary" data-expanded="false" id="primary-navigation">
-      <span class="sr-only">Main Menu</span>
+    <nav class="nav nav--primary" data-expanded="false" id="primary-navigation" aria-label="Main Menu">
       <ul class="nav__list nav__list--primary letter-space-400 font-primary-cond flex uppercase" role="list">
         <li>
           <a href="./index.html" data-active="false" class="nav__link text-light global-link">
@@ -52,26 +54,55 @@
     </nav>
   </header>
 
-  <main class="main destination">
+  <main class="main destination" id="main-content">
     <div class="container grid grid-two-cols grid--destination">
       <h1 class="numbered-title span-entire uppercase text-500 font-primary-cond letter-space-600 text-white">
         <span class="numbered-text bold" aria-hidden="true">01</span> Pick your destination
       </h1>
 
-      <div>
-        <img src="./assets/destination/image-moon.webp" class="destination__image" alt="The Moon">
-      </div>
+      <picture>
+        <source srcset="./assets/destination/image-moon.webp" type="image/webp">
+        <img src="./assets/destination/image-moon.webp" alt="The Moon">
+      </picture>
+      <picture hidden>
+        <source srcset="./assets/destination/image-mars.webp" type="image/webp">
+        <img src="./assets/destination/image-mars.webp" alt="The Mars">
+      </picture>
+      <picture hidden>
+        <source srcset="./assets/destination/image-europa.webp" type="image/webp">
+        <img src="./assets/destination/image-europa.webp" alt="The Europa">
+      </picture>
+      <picture hidden>
+        <source srcset="./assets/destination/image-titan.webp" type="image/webp">
+        <img src="./assets/destination/image-titan.webp" alt="The Titan">
+      </picture>
 
       <div class="flow" style="--flow-space:3rem">
-        <div class="tab-list tab-list--destination flex">
-          <button class="btn btn--tab text-light font-primary-cond letter-space-500" data-active="true" data-controls="Moon">Moon</button>
-          <button class="btn btn--tab text-light font-primary-cond letter-space-500" data-active="false" data-controls="Mars">Mars</button>
-          <button class="btn btn--tab text-light font-primary-cond letter-space-500" data-active="false" data-controls="Europa">Europa</button>
-          <button class="btn btn--tab text-light font-primary-cond letter-space-500" data-active="false" data-controls="Titan">Titan</button>
-        </div>
+        <ul class="tab-list tab-list--destination flex" role='tablist' aria-label="Destinations">
+          <li>
+            <button class="btn btn--tab text-light font-primary-cond letter-space-500" data-active="true" role="tab" tabindex="0" aria-controls="moon">
+              Moon
+            </button>
+          </li>
+          <li>
+            <button class="btn btn--tab text-light font-primary-cond letter-space-500" data-active="false" role="tab" tabindex="-1" aria-controls="mars">
+              Mars
+            </button>
+          </li>
+          <li>
+            <button class="btn btn--tab text-light font-primary-cond letter-space-500" data-active="false" role="tab" tabindex="-1" aria-controls="europa">
+              Europa
+            </button>
+          </li>
+          <li>
+            <button class="btn btn--tab text-light font-primary-cond letter-space-500" data-active="false" role="tab" tabindex="-1" aria-controls="titan">
+              Titan
+            </button>
+          </li>
+        </ul>
         
-        <article class="destination__info">
-          <h3 class="destination__title text-800 font-bellefair text-white uppercase">Moon</h3>
+        <article class="destination__info" role="tabpanel" id="moon">
+          <h3 class="destination__title text-800 font-accent text-white uppercase">Moon</h3>
           <p>
             See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and
             come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing
@@ -85,6 +116,57 @@
             <div class="destination__stat">
               <h4 class="text-300 font-primary-cond letter-space-400">Est. travel time</h4>
               <p class="text-500 text-white">3 days</p>
+            </div>
+          </div>
+        </article>
+        
+        <article class="destination__info" role="tabpanel" id="mars" hidden>
+          <h3 class="destination__title text-800 font-accent text-white uppercase">Mars</h3>
+          <p>
+            Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!
+          </p>
+          <div class="destination__stats grid uppercase">
+            <div class="destination__stat">
+              <h4 class="text-300 font-primary-cond letter-space-400">Avg. distance</h4>
+              <p class="text-500 text-white">225 mil. km</p>
+            </div>
+            <div class="destination__stat">
+              <h4 class="text-300 font-primary-cond letter-space-400">Est. travel time</h4>
+              <p class="text-500 text-white">9 months</p>
+            </div>
+          </div>
+        </article>
+        
+        <article class="destination__info" role="tabpanel" id="europa" hidden>
+          <h3 class="destination__title text-800 font-accent text-white uppercase">Europa</h3>
+          <p>
+            The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.
+          </p>
+          <div class="destination__stats grid uppercase">
+            <div class="destination__stat">
+              <h4 class="text-300 font-primary-cond letter-space-400">Avg. distance</h4>
+              <p class="text-500 text-white">628 mil. km</p>
+            </div>
+            <div class="destination__stat">
+              <h4 class="text-300 font-primary-cond letter-space-400">Est. travel time</h4>
+              <p class="text-500 text-white">3 years</p>
+            </div>
+          </div>
+        </article>
+        
+        <article class="destination__info" role="tabpanel" id="titan" hidden>
+          <h3 class="destination__title text-800 font-accent text-white uppercase">Titan</h3>
+          <p>
+            The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views of the Rings of Saturn.
+          </p>
+          <div class="destination__stats grid uppercase">
+            <div class="destination__stat">
+              <h4 class="text-300 font-primary-cond letter-space-400">Avg. distance</h4>
+              <p class="text-500 text-white">1.6 bil. km</p>
+            </div>
+            <div class="destination__stat">
+              <h4 class="text-300 font-primary-cond letter-space-400">Est. travel time</h4>
+              <p class="text-500 text-white">7 years</p>
             </div>
           </div>
         </article>

@@ -19,16 +19,18 @@
 </head>
 <body class="bg-layout bg-layout--home">
   <header class="header header--primary flex items-center">
+    <a href="#primary-navigation" class="sr-only">skip to navigation</a>
+    <a href="#main-content" class="sr-only">skip to main content</a>
+
     <div class="logo">
       <img src="./assets/shared/logo.svg" alt="space tourism logo">
     </div>
 
-    <button class="btn btn--menu" aria-controls="primary-navigation">
-      <span class="sr-only">Menu Button</span>
+    <button class="btn btn--menu" aria-expanded="false" aria-controls="primary-navigation">
+      <span class="sr-only">Open Menu</span>
     </button>
 
-    <nav class="nav nav--primary" data-expanded="false" id="primary-navigation">
-      <span class="sr-only">Main Menu</span>
+    <nav class="nav nav--primary" data-expanded="false" id="primary-navigation" aria-label="Main Menu">
       <ul class="nav__list nav__list--primary letter-space-400 font-primary-cond flex uppercase" role="list">
         <li>
           <a href="./index.html" data-active="true" class="nav__link text-light global-link">
@@ -54,7 +56,7 @@
     </nav>
   </header>
 
-  <main class="main home">
+  <main class="main home" id="main-content">
     <div class="container grid grid-two-cols">
       <div class="flow" data-spacing="sm">
         <h1 class="home__title text-500 font-primary-cond letter-space-600 uppercase">
